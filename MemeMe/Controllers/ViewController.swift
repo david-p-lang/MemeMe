@@ -32,7 +32,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     var memedImage:UIImage = UIImage()
     var originalImage:UIImage = UIImage()
-    var savedMeme : Meme?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +85,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
         }
         present(shareMemeController, animated: true, completion: nil)
+        print("share meme controller pushed")
     }
     
     /// Reset steps for a new attempt
@@ -94,6 +94,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomTextField.text = "BOTTOM"
         imageView.image = nil
         actionButton.isEnabled = false
+        dismiss(animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -151,7 +152,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             let bottomText = bottomTextField.text,
             let originalImage = imageView.image {
                 let meme = Meme(topTextField: topText, bottomTextField: bottomText, originalImage: originalImage, memedImage: memedImage)
-            self.savedMeme = meme
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.memes.append(meme)
+            print("the current memes struct contains: \(appDelegate.memes.count) items")
         }
         
     }
