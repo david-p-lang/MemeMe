@@ -30,7 +30,6 @@ class EditorViewController: UIViewController, UIImagePickerControllerDelegate, U
         NSAttributedString.Key.strokeWidth : -3.0
     ]
     
-    //var memedImage:UIImage = UIImage()
     var originalImage:UIImage = UIImage()
     
     override func viewDidLoad() {
