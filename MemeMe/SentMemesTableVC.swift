@@ -60,5 +60,5 @@ class SentMemesTableVC: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-
 }
+
